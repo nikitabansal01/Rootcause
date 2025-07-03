@@ -27,6 +27,14 @@
       "dest": "/logo512.png"
     },
     {
+      "src": "/logo.svg",
+      "dest": "/logo.svg"
+    },
+    {
+      "src": "/logo_svg.png",
+      "dest": "/logo_svg.png"
+    },
+    {
       "src": "/robots.txt",
       "dest": "/robots.txt"
     },

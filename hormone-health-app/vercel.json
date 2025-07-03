@@ -18,16 +18,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "functions": {
-    "api/save-response.js": {
-      "maxDuration": 10
-    },
-    "api/save-email.js": {
-      "maxDuration": 10
-    },
-    "api/get-responses.js": {
-      "maxDuration": 10
-    }
-  }
+  ]
 } 

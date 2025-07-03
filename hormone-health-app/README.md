@@ -1,46 +1,88 @@
-# Getting Started with Create React App
+# Auvra — Hormone Health Assessment App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Auvra is a mobile-friendly React web app designed to help women identify potential hormone imbalances based on a personalized survey, optional lab inputs, and menstrual cycle phase. Built with guidance from endocrinology, gynecology, and functional nutrition frameworks, Auvra empowers users with actionable insights and education about their hormone health.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Project Goal
+To provide an accessible, user-friendly tool for women to:
+- Assess hormone health using symptoms, cycle data, and lab results
+- Understand possible hormone imbalances and their implications
+- Receive personalized recommendations and educational resources
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠️ Process & Architecture
+- **User Flow:**
+  1. Home page introduces Auvra and its purpose
+  2. Users complete a 10-question hormone health survey (various input types)
+  3. Optionally, users can enter lab values for deeper analysis
+  4. Cycle phase is calculated based on user input
+  5. Backend logic scores symptoms and integrates lab data for refined results
+  6. Results page displays hormone assessment, explanations, confidence levels, conflicts, and recommendations
+  7. Users can download their report as a PDF or send it to their email
+  8. Option to retake the survey and start over
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Tech Stack:**
+  - React (functional components)
+  - TypeScript
+  - React Router
+  - Plain CSS Modules for styling
+  - `html2canvas` + `jsPDF` for PDF export
 
-### `npm test`
+- **Architecture:**
+  - Logic is separated into `src/logic/hormones`
+  - Types are centralized in `src/types`
+  - Components are in `src/components`
+  - Pages are in `src/pages`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ✨ Features
+- Mobile-first, accessible UI
+- Personalized hormone health survey
+- Optional lab data integration (testosterone, DHEA, LH/FSH, TSH, T3, insulin, HbA1c)
+- Cycle phase calculation
+- Detailed results with explanations, confidence, and conflict detection
+- PDF export and email report (via mailto)
+- Auvra branding and clear medical disclaimer
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🖼️ Branding
+- The app features the Auvra logo and footer branding
+- All reports and PDFs are watermarked with Auvra and a medical disclaimer
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🏁 Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/nikitabansal01/Rootcause.git
+   cd Rootcause/hormone-health-app
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
+4. **Open in your browser:**
+   Visit [http://localhost:3000](http://localhost:3000)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🤝 Contributing
+We welcome feedback, suggestions, and contributions! Please open an issue or submit a pull request.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## ⚠️ Disclaimer
+This app is for informational purposes only and does not constitute medical advice, diagnosis, or treatment. Always consult a licensed healthcare provider.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Auvra by Hormone Insight Inc**

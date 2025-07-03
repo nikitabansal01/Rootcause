@@ -6,15 +6,28 @@
 
 import { Redis } from '@upstash/redis';
 
-// Initialize Upstash Redis client
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+// Initialize Upstash Redis client with error handling
+let redis;
+try {
+  redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  });
+} catch (error) {
+  console.error('Failed to initialize Redis client:', error);
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
+  }
+
+  // Check if Redis is available
+  if (!redis) {
+    return res.status(500).json({ 
+      success: false, 
+      message: 'Database connection not available. Please check environment variables.' 
+    });
   }
 
   try {

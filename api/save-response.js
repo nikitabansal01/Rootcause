@@ -13,6 +13,10 @@ try {
   console.log('UPSTASH_REDIS_REST_URL:', process.env.UPSTASH_REDIS_REST_URL ? 'Set' : 'Not set');
   console.log('UPSTASH_REDIS_REST_TOKEN:', process.env.UPSTASH_REDIS_REST_TOKEN ? 'Set' : 'Not set');
   
+  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+    throw new Error('Missing Upstash environment variables');
+  }
+  
   redis = new Redis({
     url: process.env.UPSTASH_REDIS_REST_URL,
     token: process.env.UPSTASH_REDIS_REST_TOKEN,
@@ -35,7 +39,8 @@ export default async function handler(req, res) {
       message: 'Database connection not available. Please check environment variables.',
       debug: {
         urlSet: !!process.env.UPSTASH_REDIS_REST_URL,
-        tokenSet: !!process.env.UPSTASH_REDIS_REST_TOKEN
+        tokenSet: !!process.env.UPSTASH_REDIS_REST_TOKEN,
+        error: 'Redis client initialization failed'
       }
     });
   }
@@ -85,7 +90,11 @@ export default async function handler(req, res) {
     res.status(500).json({ 
       success: false, 
       message: 'Failed to save response',
-      error: process.env.NODE_ENV === 'development' ? error.message : 'Internal server error'
+      error: error.message,
+      debug: {
+        urlSet: !!process.env.UPSTASH_REDIS_REST_URL,
+        tokenSet: !!process.env.UPSTASH_REDIS_REST_TOKEN
+      }
     });
   }
 } 

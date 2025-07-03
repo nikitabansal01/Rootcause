@@ -9,10 +9,15 @@ import { Redis } from '@upstash/redis';
 // Initialize Upstash Redis client with error handling
 let redis;
 try {
+  console.log('Initializing Redis client...');
+  console.log('UPSTASH_REDIS_REST_URL:', process.env.UPSTASH_REDIS_REST_URL ? 'Set' : 'Not set');
+  console.log('UPSTASH_REDIS_REST_TOKEN:', process.env.UPSTASH_REDIS_REST_TOKEN ? 'Set' : 'Not set');
+  
   redis = new Redis({
     url: process.env.UPSTASH_REDIS_REST_URL,
     token: process.env.UPSTASH_REDIS_REST_TOKEN,
   });
+  console.log('Redis client initialized successfully');
 } catch (error) {
   console.error('Failed to initialize Redis client:', error);
 }
@@ -24,9 +29,14 @@ export default async function handler(req, res) {
 
   // Check if Redis is available
   if (!redis) {
+    console.error('Redis client not available');
     return res.status(500).json({ 
       success: false, 
-      message: 'Database connection not available. Please check environment variables.' 
+      message: 'Database connection not available. Please check environment variables.',
+      debug: {
+        urlSet: !!process.env.UPSTASH_REDIS_REST_URL,
+        tokenSet: !!process.env.UPSTASH_REDIS_REST_TOKEN
+      }
     });
   }
 
@@ -49,11 +59,15 @@ export default async function handler(req, res) {
       createdAt: new Date().toISOString()
     };
 
+    console.log('Attempting to save response:', responseId);
+
     // Store in Upstash Redis
     await redis.set(responseId, responseData);
+    console.log('Response saved successfully');
     
     // Also store in a list for easy retrieval
     await redis.lpush('responses', responseId);
+    console.log('Response ID added to list');
 
     // When using Unstash:
     // const unstash = new Unstash(process.env.UNSTASH_TOKEN);

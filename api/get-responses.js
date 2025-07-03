@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
   try {
     // Get all response IDs
-    const responseIds = await redis.lrange('responses', 0, -1);
+    const responseIds = (await redis.lrange('responses', 0, -1)) || [];
     
     // Get all response data
     const responses = [];
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     }
 
     // Get all email IDs
-    const emailIds = await redis.lrange('emails', 0, -1);
+    const emailIds = (await redis.lrange('emails', 0, -1)) || [];
     
     // Get all email data
     const emails = [];

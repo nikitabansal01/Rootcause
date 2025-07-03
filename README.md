@@ -79,7 +79,9 @@ To provide an accessible, user-friendly tool for women to:
 
 ## 🚀 Deployment
 
-For production deployment with data storage, see [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions on deploying to Vercel with Vercel KV database.
+For production deployment with data storage, see [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions on deploying to Vercel with Upstash Redis database.
+
+<!-- Updated deployment info -->
 
 ---
 

@@ -29,6 +29,8 @@ To provide an accessible, user-friendly tool for women to:
   - React Router
   - Plain CSS Modules for styling
   - `html2canvas` + `jsPDF` for PDF export
+  - Vercel KV for data storage
+  - Vercel serverless functions for API
 
 - **Architecture:**
   - Logic is separated into `src/logic/hormones`
@@ -45,6 +47,8 @@ To provide an accessible, user-friendly tool for women to:
 - Cycle phase calculation
 - Detailed results with explanations, confidence, and conflict detection
 - PDF export and email report (via mailto)
+- Data persistence with Vercel KV storage
+- API endpoints for saving responses and emails
 - Auvra branding and clear medical disclaimer
 
 ---
@@ -72,6 +76,10 @@ To provide an accessible, user-friendly tool for women to:
    ```
 4. **Open in your browser:**
    Visit [http://localhost:3000](http://localhost:3000)
+
+## 🚀 Deployment
+
+For production deployment with data storage, see [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions on deploying to Vercel with Vercel KV database.
 
 ---
 

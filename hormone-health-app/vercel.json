@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "functions": {
+    "api/save-response.js": {
+      "maxDuration": 10
+    },
+    "api/save-email.js": {
+      "maxDuration": 10
+    },
+    "api/get-responses.js": {
+      "maxDuration": 10
+    }
+  }
+} 

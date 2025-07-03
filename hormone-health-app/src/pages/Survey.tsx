@@ -164,7 +164,7 @@ const Survey: React.FC = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Calculate cycle phase
     const isRegular = answers.q1_period === 'Yes';
     const cycleLength = answers.q1_cycle_length ? parseInt(answers.q1_cycle_length) : 28;
@@ -224,8 +224,34 @@ const Survey: React.FC = () => {
       conflicts
     };
 
-    // Navigate to results with the result object
-    navigate('/results', { state: { result } });
+    // Save response to API
+    try {
+      const response = await fetch('/api/save-response', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          surveyData: answers,
+          results: result,
+          timestamp: new Date().toISOString()
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Navigate to results with the result object and response ID
+        navigate('/results', { state: { result, responseId: data.responseId } });
+      } else {
+        console.error('Failed to save response');
+        // Still navigate to results even if save fails
+        navigate('/results', { state: { result } });
+      }
+    } catch (error) {
+      console.error('Error saving response:', error);
+      // Still navigate to results even if save fails
+      navigate('/results', { state: { result } });
+    }
   };
 
   const currentQ = questions[currentQuestion];

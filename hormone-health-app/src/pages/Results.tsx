@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AnalysisResult } from '../types';
 // import { getCyclePhaseDisplayName } from '../logic/hormones/cycleUtils';
 import styles from './Results.module.css';
 
@@ -21,8 +20,31 @@ const Results: React.FC = () => {
     navigate('/survey');
   };
 
-  const handleEmailSubmit = () => {
+  const handleEmailSubmit = async () => {
     if (email && isValidEmail(email)) {
+      try {
+        // Save email to API
+        const response = await fetch('/api/save-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email,
+            responseId: location.state?.responseId,
+            timestamp: new Date().toISOString()
+          })
+        });
+
+        if (response.ok) {
+          console.log('Email saved successfully');
+        } else {
+          console.error('Failed to save email');
+        }
+      } catch (error) {
+        console.error('Error saving email:', error);
+      }
+
       // Create email content with hormone results
       const subject = 'My Hormone Health Report';
       const body = createEmailBody(result);

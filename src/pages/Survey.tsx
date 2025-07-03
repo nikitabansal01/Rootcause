@@ -77,7 +77,7 @@ const Survey: React.FC = () => {
     },
     {
       id: 'q6_mood',
-      question: 'How do your hormones affect your mood?',
+      question: 'What shifts have you observed in your mood a week before your periods?',
       type: 'radio',
       options: ['No change', 'Irritable', 'Sad/depressed', 'Rage/anger']
     },
@@ -352,6 +352,9 @@ const Survey: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <div style={{ position: 'absolute', top: 16, right: 16, background: '#fff3cd', color: '#856404', padding: '10px 18px', borderRadius: '6px', fontWeight: 'bold', fontSize: '1em', zIndex: 1000, boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+        🚧 This is a Beta Version — We're still improving!
+      </div>
       <div className={styles.header}>
         <h1 className={styles.title}>Hormone Health Survey</h1>
         <div className={styles.progressBar}>

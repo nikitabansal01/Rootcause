@@ -68,12 +68,12 @@ const Results: React.FC = () => {
     
     if (result.explanations) {
       body += 'Explanations:\n';
-      Object.entries(result.explanations).forEach(([hormone, explanation]) => {
+      Object.entries(result.explanations || {}).forEach(([hormone, explanation]) => {
         body += `${hormone}: ${explanation}\n`;
       });
     }
     
-    if (result.conflicts && result.conflicts.length > 0) {
+    if (result.conflicts && Array.isArray(result.conflicts) && result.conflicts.length > 0) {
       body += '\nImportant Notes:\n';
       result.conflicts.forEach((conflict: string) => {
         body += `- ${conflict}\n`;
@@ -186,7 +186,10 @@ const Results: React.FC = () => {
       general: [] as string[]
     };
 
-    explanations.forEach(explanation => {
+    // Ensure explanations is an array
+    const explanationsArray = Array.isArray(explanations) ? explanations : [];
+
+    explanationsArray.forEach(explanation => {
       if (explanation.includes('lab') || explanation.includes('Lab') || explanation.includes('added +2')) {
         categories.labs.push(explanation);
       } else if (explanation.includes('conflict') || explanation.includes('low labs') || explanation.includes('despite')) {

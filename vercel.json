@@ -35,6 +35,10 @@
       "dest": "/logo_svg.png"
     },
     {
+      "src": "/Logo.png",
+      "dest": "/Logo.png"
+    },
+    {
       "src": "/robots.txt",
       "dest": "/robots.txt"
     },

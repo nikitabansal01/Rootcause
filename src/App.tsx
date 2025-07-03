@@ -46,7 +46,7 @@ function App() {
       <Router>
         <div className="App">
           {/* Fixed logo at top-left */}
-          <img src="/logo_svg.png" alt="Logo" className="app-logo" />
+          <img src="/Logo.png" alt="Logo" className="app-logo" />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/survey" element={<Survey />} />

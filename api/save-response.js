@@ -1,4 +1,16 @@
-import { kv } from '@vercel/kv';
+// Example of using Unstash (currently using Vercel KV)
+// import { kv } from '@vercel/kv';
+
+// To change to Unstash:
+// import { Unstash } from 'unstash';
+
+import { Redis } from '@upstash/redis';
+
+// Initialize Upstash Redis client
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+});
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -24,11 +36,16 @@ export default async function handler(req, res) {
       createdAt: new Date().toISOString()
     };
 
-    // Store in Vercel KV
-    await kv.set(responseId, JSON.stringify(responseData));
+    // Store in Upstash Redis
+    await redis.set(responseId, responseData);
     
     // Also store in a list for easy retrieval
-    await kv.lpush('responses', responseId);
+    await redis.lpush('responses', responseId);
+
+    // When using Unstash:
+    // const unstash = new Unstash(process.env.UNSTASH_TOKEN);
+    // await unstash.set(responseId, responseData);
+    // await unstash.lpush('responses', responseId);
 
     res.status(200).json({ 
       success: true, 
@@ -40,7 +57,8 @@ export default async function handler(req, res) {
     console.error('Error saving response:', error);
     res.status(500).json({ 
       success: false, 
-      message: 'Failed to save response' 
+      message: 'Failed to save response',
+      error: process.env.NODE_ENV === 'development' ? error.message : 'Internal server error'
     });
   }
 } 

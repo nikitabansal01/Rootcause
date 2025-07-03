@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// 에러 처리
+// Error handling
 window.addEventListener('error', (event) => {
   console.error('Global error:', event.error);
 });

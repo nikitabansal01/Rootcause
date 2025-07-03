@@ -1,4 +1,10 @@
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+
+// Initialize Upstash Redis client
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+});
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -30,15 +36,15 @@ export default async function handler(req, res) {
       createdAt: new Date().toISOString()
     };
 
-    // Store in Vercel KV
-    await kv.set(emailId, JSON.stringify(emailData));
+    // Store in Upstash Redis
+    await redis.set(emailId, emailData);
     
     // Also store in a list for easy retrieval
-    await kv.lpush('emails', emailId);
+    await redis.lpush('emails', emailId);
 
     // If there's a responseId, link the email to the response
     if (responseId) {
-      await kv.hset(`response_emails:${responseId}`, { email });
+      await redis.hset(`response_emails:${responseId}`, { email });
     }
 
     res.status(200).json({ 
@@ -51,7 +57,8 @@ export default async function handler(req, res) {
     console.error('Error saving email:', error);
     res.status(500).json({ 
       success: false, 
-      message: 'Failed to save email' 
+      message: 'Failed to save email',
+      error: process.env.NODE_ENV === 'development' ? error.message : 'Internal server error'
     });
   }
 } 

@@ -5,7 +5,7 @@ import Survey from './pages/Survey';
 import Results from './pages/Results';
 import './App.css';
 
-// 에러 바운더리 컴포넌트
+// Error boundary component
 class ErrorBoundary extends React.Component<
   { children: React.ReactNode },
   { hasError: boolean; error?: Error }

@@ -136,4 +136,60 @@ You can access saved responses and emails via:
 - **KV Storage**: Free tier includes 256MB storage
 - **Bandwidth**: Free tier includes 100GB bandwidth
 
-For production use, consider upgrading to Pro plan for better performance and limits. 
+For production use, consider upgrading to Pro plan for better performance and limits.
+
+# Vercel Deployment Guide (Upstash Redis)
+
+## 1. Upstash Redis Setup
+
+### Create Upstash Account
+1. Create an account at [Upstash Console](https://console.upstash.com/)
+2. Create a new Redis database
+3. After creating the database, copy the following information:
+   - **UPSTASH_REDIS_REST_URL**
+   - **UPSTASH_REDIS_REST_TOKEN**
+
+### Set Vercel Environment Variables
+1. Select your project in Vercel dashboard
+2. Settings → Environment Variables
+3. Add the following environment variables:
+   ```
+   UPSTASH_REDIS_REST_URL = your_upstash_redis_url
+   UPSTASH_REDIS_REST_TOKEN = your_upstash_redis_token
+   ```
+
+## 2. Deployment
+
+### Automatic Deployment (Recommended)
+- Push to GitHub and Vercel will automatically deploy.
+
+### Manual Deployment
+```bash
+npm run build
+vercel --prod
+```
+
+## 3. Troubleshooting
+
+### Check Environment Variables
+- Verify environment variables are correctly set in Vercel dashboard
+- Ensure they are applied to production environment
+
+### Check Logs
+- Check API logs in Vercel dashboard → Functions
+- Check error messages in browser console
+
+## 4. API Endpoints
+
+- `POST /api/save-response` - Save survey response
+- `GET /api/get-responses` - Get all responses
+- `POST /api/save-email` - Save email
+
+## 5. Database Structure
+
+### Redis Key Structure
+- `response_[timestamp]_[random]` - Individual response data
+- `responses` - Response ID list
+- `email_[timestamp]_[random]` - Individual email data
+- `emails` - Email ID list
+- `response_emails:[responseId]` - Link response with email 

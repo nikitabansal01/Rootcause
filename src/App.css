@@ -36,3 +36,13 @@ button, input, select, textarea {
 html {
   scroll-behavior: smooth;
 }
+
+.app-logo {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  z-index: 1000;
+}

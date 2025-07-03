@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Survey from './pages/Survey';
 import Results from './pages/Results';
 import './App.css';
+import logo from '../../Logo_svg.png';
 
 // Error boundary component
 class ErrorBoundary extends React.Component<
@@ -45,6 +46,8 @@ function App() {
     <ErrorBoundary>
       <Router>
         <div className="App">
+          {/* Fixed logo at top-left */}
+          <img src={logo} alt="Logo" className="app-logo" />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/survey" element={<Survey />} />

@@ -352,7 +352,7 @@ const Survey: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div style={{ position: 'absolute', top: 16, right: 16, color: '#856404', fontSize: '0.95em', fontWeight: 'normal', zIndex: 1000 }}>
+      <div style={{ position: 'absolute', top: 16, right: 16, color: '#fff', fontSize: '0.95em', fontWeight: 'normal', zIndex: 1000 }}>
         🚧 This is a Beta Version — We're still improving!
       </div>
       <div className={styles.header}>

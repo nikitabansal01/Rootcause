@@ -375,23 +375,35 @@ const Results: React.FC = () => {
             <p className={styles.description}>
               We're building something meaningful for your hormone health. Stay connected, explore our content, and be among the first to experience it.
             </p>
-            <ul className={styles.linkList}>
-              <li className={styles.linkItem}>
+            <div className={styles.linkList}>
+              <div className={styles.linkItem}>
                 <a href="https://www.instagram.com/myauvra/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
-                  <span className={styles.icon}>👉</span>Follow us on Instagram
+                  <span className={styles.icon} style={{verticalAlign: 'middle', marginRight: 8}}>
+                    {/* Instagram SVG */}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" fill="#E1306C"/><path d="M12 7.2A4.8 4.8 0 1 0 12 16.8A4.8 4.8 0 1 0 12 7.2Z" fill="white"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
+                  </span>
+                  Follow us on Instagram
                 </a>
-              </li>
-              <li className={styles.linkItem}>
+              </div>
+              <div className={styles.linkItem}>
                 <a href="https://forms.fillout.com/t/x8xyYYpek3us" target="_blank" rel="noopener noreferrer" className={styles.textLink}>
-                  <span className={styles.icon}>🚀</span> Join our Waitlist – Be the First to Know!
+                  <span className={styles.icon} style={{verticalAlign: 'middle', marginRight: 8}}>
+                    {/* Rocket SVG */}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 16.5L8.5 15.5L15.5 8.5C16.3284 7.67157 17.6716 7.67157 18.5 8.5C19.3284 9.32843 19.3284 10.6716 18.5 11.5L11.5 18.5L10.5 25L2 16.5Z" fill="#FF9800"/><circle cx="17" cy="7" r="2" fill="#90CAF9"/></svg>
+                  </span>
+                  Join our Waitlist – Be the First to Know!
                 </a>
-              </li>
-              <li className={styles.linkItem}>
+              </div>
+              <div className={styles.linkItem}>
                 <a href="https://www.linkedin.com/company/hormone-insight/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
-                  <span className={styles.icon}>👔</span>Connect with us on LinkedIn
+                  <span className={styles.icon} style={{verticalAlign: 'middle', marginRight: 8}}>
+                    {/* LinkedIn SVG */}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" fill="#0077B5"/><path d="M7.5 17V10.5H10V17H7.5ZM8.75 9.5C8.05964 9.5 7.5 8.94036 7.5 8.25C7.5 7.55964 8.05964 7 8.75 7C9.44036 7 10 7.55964 10 8.25C10 8.94036 9.44036 9.5 8.75 9.5ZM11 17V13.5C11 12.6716 11.6716 12 12.5 12C13.3284 12 14 12.6716 14 13.5V17H11ZM12.5 11C11.1193 11 10 12.1193 10 13.5V17H15V13.5C15 12.1193 13.8807 11 12.5 11Z" fill="white"/></svg>
+                  </span>
+                  Connect with us on LinkedIn
                 </a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
 
           {/* Email Input Section */}

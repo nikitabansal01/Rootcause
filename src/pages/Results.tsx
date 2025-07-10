@@ -390,71 +390,97 @@ const Results: React.FC = () => {
               </li>
             </ul>
           </div>
+
+          <div className={styles.linksSection}>
+            <h2 className={styles.resultTitle}>Join Us on the Journey</h2>
+            <p className={styles.description}>
+              We're building something meaningful for your hormone health. Stay connected, explore our content, and be among the first to experience it.
+            </p>
+            <ul className={styles.linkList}>
+              <li className={styles.linkItem}>
+                <a href="https://www.instagram.com/myauvra/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
+                  <span className={styles.icon}>👉</span>
+                  Follow us on Instagram
+                </a>
+              </li>
+              <li className={styles.linkItem}>
+                <a href="https://forms.fillout.com/t/x8xyYYpek3us" target="_blank" rel="noopener noreferrer" className={styles.textLink}>
+                  🚀 Join our Waitlist – Be the First to Know!
+                </a>
+              </li>
+              <li className={styles.linkItem}>
+                <a href="https://www.linkedin.com/company/hormone-insight/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
+                  <span className={styles.icon}>👔</span>
+                  Connect with us on LinkedIn
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Email Input Section */}
+          <div className={styles.emailSection}>
+            {!emailSent && !showEmailInput ? (
+              <button 
+                className={styles.emailButton}
+                onClick={() => setShowEmailInput(true)}
+              >
+                📧 Want to receive this report via email?
+              </button>
+            ) : showEmailInput && !emailSent ? (
+              <div className={styles.emailInputContainer}>
+                <label htmlFor="email" className={styles.emailLabel}>
+                  Enter your email address:
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your.email@example.com"
+                  className={styles.emailInput}
+                />
+                <div className={styles.emailActions}>
+                  <button 
+                    className={styles.sendEmailButton}
+                    onClick={handleEmailSubmit}
+                    disabled={!email || !isValidEmail(email)}
+                  >
+                    Send PDF to My Email
+                  </button>
+                  <button 
+                    className={styles.cancelEmailButton}
+                    onClick={() => {
+                      setShowEmailInput(false);
+                      setEmail('');
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.emailSuccess}>
+                <span className={styles.successIcon}>✅</span>
+                <span>Thanks! We'll send it shortly.</span>
+              </div>
+            )}
+          </div>
+
+          {/* Action Buttons */}
+          <div className={styles.actionGroup}>
+            <button className={styles.downloadButton} onClick={handleDownloadPDF}>
+              📄 Download My Hormone Report (PDF)
+            </button>
+            <button className={styles.restartButton} onClick={handleRestart}>
+              🔁 Start Over
+            </button>
+          </div>
+
+          <div className={styles.disclaimer}>
+            This analysis is for informational purposes only and should not replace professional medical advice. 
+            Always consult with a qualified healthcare provider for diagnosis and treatment.
+          </div>
         </div>
-      </div>
-
-      {/* Email Input Section */}
-      <div className={styles.emailSection}>
-        {!emailSent && !showEmailInput ? (
-          <button 
-            className={styles.emailButton}
-            onClick={() => setShowEmailInput(true)}
-          >
-            📧 Want to receive this report via email?
-          </button>
-        ) : showEmailInput && !emailSent ? (
-          <div className={styles.emailInputContainer}>
-            <label htmlFor="email" className={styles.emailLabel}>
-              Enter your email address:
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your.email@example.com"
-              className={styles.emailInput}
-            />
-            <div className={styles.emailActions}>
-              <button 
-                className={styles.sendEmailButton}
-                onClick={handleEmailSubmit}
-                disabled={!email || !isValidEmail(email)}
-              >
-                Send PDF to My Email
-              </button>
-              <button 
-                className={styles.cancelEmailButton}
-                onClick={() => {
-                  setShowEmailInput(false);
-                  setEmail('');
-                }}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className={styles.emailSuccess}>
-            <span className={styles.successIcon}>✅</span>
-            <span>Thanks! We'll send it shortly.</span>
-          </div>
-        )}
-      </div>
-
-      {/* Action Buttons */}
-      <div className={styles.actionGroup}>
-        <button className={styles.downloadButton} onClick={handleDownloadPDF}>
-          📄 Download My Hormone Report (PDF)
-        </button>
-        <button className={styles.restartButton} onClick={handleRestart}>
-          🔁 Start Over
-        </button>
-      </div>
-
-      <div className={styles.disclaimer}>
-        This analysis is for informational purposes only and should not replace professional medical advice. 
-        Always consult with a qualified healthcare provider for diagnosis and treatment.
       </div>
     </div>
   );

@@ -369,29 +369,8 @@ const Results: React.FC = () => {
             )}
           </div>
 
-          {/* Recommendations */}
+          {/* Join Us on the Journey (in main container) */}
           <div className={styles.recommendations}>
-            <h2 className={styles.resultTitle}>Next Steps & Recommendations</h2>
-            <ul className={styles.recommendationList}>
-              <li className={styles.recommendation}>
-                <strong>Medical Consultation:</strong> Consider consulting with a healthcare provider for comprehensive hormone testing
-              </li>
-              <li className={styles.recommendation}>
-                <strong>Stress Management:</strong> Focus on stress management techniques like meditation or yoga
-              </li>
-              <li className={styles.recommendation}>
-                <strong>Diet & Nutrition:</strong> Maintain a balanced diet rich in whole foods and fiber
-              </li>
-              <li className={styles.recommendation}>
-                <strong>Lifestyle:</strong> Get adequate sleep and regular exercise to support hormone balance
-              </li>
-              <li className={styles.recommendation}>
-                <strong>Tracking:</strong> Track your symptoms and cycle patterns for better understanding
-              </li>
-            </ul>
-          </div>
-
-          <div className={styles.linksSection}>
             <h2 className={styles.resultTitle}>Join Us on the Journey</h2>
             <p className={styles.description}>
               We're building something meaningful for your hormone health. Stay connected, explore our content, and be among the first to experience it.
@@ -399,19 +378,17 @@ const Results: React.FC = () => {
             <ul className={styles.linkList}>
               <li className={styles.linkItem}>
                 <a href="https://www.instagram.com/myauvra/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
-                  <span className={styles.icon}>👉</span>
-                  Follow us on Instagram
+                  <span className={styles.icon}>👉</span>Follow us on Instagram
                 </a>
               </li>
               <li className={styles.linkItem}>
                 <a href="https://forms.fillout.com/t/x8xyYYpek3us" target="_blank" rel="noopener noreferrer" className={styles.textLink}>
-                  🚀 Join our Waitlist – Be the First to Know!
+                  <span className={styles.icon}>🚀</span> Join our Waitlist – Be the First to Know!
                 </a>
               </li>
               <li className={styles.linkItem}>
                 <a href="https://www.linkedin.com/company/hormone-insight/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
-                  <span className={styles.icon}>👔</span>
-                  Connect with us on LinkedIn
+                  <span className={styles.icon}>👔</span>Connect with us on LinkedIn
                 </a>
               </li>
             </ul>

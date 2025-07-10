@@ -405,71 +405,71 @@ const Results: React.FC = () => {
               </div>
             </div>
           </div>
-
-          {/* Email Input Section */}
-          <div className={styles.emailSection}>
-            {!emailSent && !showEmailInput ? (
-              <button 
-                className={styles.emailButton}
-                onClick={() => setShowEmailInput(true)}
-              >
-                📧 Want to receive this report via email?
-              </button>
-            ) : showEmailInput && !emailSent ? (
-              <div className={styles.emailInputContainer}>
-                <label htmlFor="email" className={styles.emailLabel}>
-                  Enter your email address:
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your.email@example.com"
-                  className={styles.emailInput}
-                />
-                <div className={styles.emailActions}>
-                  <button 
-                    className={styles.sendEmailButton}
-                    onClick={handleEmailSubmit}
-                    disabled={!email || !isValidEmail(email)}
-                  >
-                    Send PDF to My Email
-                  </button>
-                  <button 
-                    className={styles.cancelEmailButton}
-                    onClick={() => {
-                      setShowEmailInput(false);
-                      setEmail('');
-                    }}
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className={styles.emailSuccess}>
-                <span className={styles.successIcon}>✅</span>
-                <span>Thanks! We'll send it shortly.</span>
-              </div>
-            )}
-          </div>
-
-          {/* Action Buttons */}
-          <div className={styles.actionGroup}>
-            <button className={styles.downloadButton} onClick={handleDownloadPDF}>
-              📄 Download My Hormone Report (PDF)
-            </button>
-            <button className={styles.restartButton} onClick={handleRestart}>
-              🔁 Start Over
-            </button>
-          </div>
-
-          <div className={styles.disclaimer}>
-            This analysis is for informational purposes only and should not replace professional medical advice. 
-            Always consult with a qualified healthcare provider for diagnosis and treatment.
-          </div>
         </div>
+      </div>
+
+      {/* Email Input Section (not in PDF) */}
+      <div className={styles.emailSection}>
+        {!emailSent && !showEmailInput ? (
+          <button 
+            className={styles.emailButton}
+            onClick={() => setShowEmailInput(true)}
+          >
+            📧 Want to receive this report via email?
+          </button>
+        ) : showEmailInput && !emailSent ? (
+          <div className={styles.emailInputContainer}>
+            <label htmlFor="email" className={styles.emailLabel}>
+              Enter your email address:
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your.email@example.com"
+              className={styles.emailInput}
+            />
+            <div className={styles.emailActions}>
+              <button 
+                className={styles.sendEmailButton}
+                onClick={handleEmailSubmit}
+                disabled={!email || !isValidEmail(email)}
+              >
+                Send PDF to My Email
+              </button>
+              <button 
+                className={styles.cancelEmailButton}
+                onClick={() => {
+                  setShowEmailInput(false);
+                  setEmail('');
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.emailSuccess}>
+            <span className={styles.successIcon}>✅</span>
+            <span>Thanks! We'll send it shortly.</span>
+          </div>
+        )}
+      </div>
+
+      {/* Action Buttons (not in PDF) */}
+      <div className={styles.actionGroup}>
+        <button className={styles.downloadButton} onClick={handleDownloadPDF}>
+          📄 Download My Hormone Report (PDF)
+        </button>
+        <button className={styles.restartButton} onClick={handleRestart}>
+          🔁 Start Over
+        </button>
+      </div>
+
+      <div className={styles.disclaimer}>
+        This analysis is for informational purposes only and should not replace professional medical advice. 
+        Always consult with a qualified healthcare provider for diagnosis and treatment.
       </div>
     </div>
   );

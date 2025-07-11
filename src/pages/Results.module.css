@@ -503,6 +503,23 @@
   text-align: center;
 }
 
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.linkItem:last-child {
+  margin-bottom: 0;
+}
+
 /* Mobile responsive styles */
 @media (max-width: 768px) {
   .container {

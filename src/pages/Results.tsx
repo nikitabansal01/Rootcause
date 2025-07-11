@@ -225,6 +225,7 @@ const Results: React.FC = () => {
 
   const confidenceInfo = getConfidenceDisplay(result.confidence);
   const cyclePhaseInfo = getCyclePhaseDisplay(result.cyclePhase);
+  const categorizedExplanations = categorizeExplanations(result.explanations || []);
 
   return (
     <div className={styles.container}>

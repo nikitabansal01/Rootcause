@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 // import { getCyclePhaseDisplayName } from '../logic/hormones/cycleUtils';
 import styles from './Results.module.css';
+import { SocialIcon } from 'react-social-icons';
 
 const Results: React.FC = () => {
   const location = useLocation();
@@ -383,23 +384,17 @@ const Results: React.FC = () => {
                   Join our Waitlist – Be the First to Know!
                 </a>
               </div>
-              {/* Instagram second, official logo */}
+              {/* Instagram second, use react-social-icons */}
               <div className={styles.linkItem}>
-                <a href="https://www.instagram.com/myauvra/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
-                  <span className={styles.icon} style={{verticalAlign: 'middle', marginRight: 8}}>
-                    {/* Official Instagram SVG */}
-                    <svg width="20" height="20" viewBox="0 0 448 512" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="448" height="512" rx="100" fill="url(#ig-gradient)"/><defs><linearGradient id="ig-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f58529"/><stop offset="50%" stop-color="#dd2a7b"/><stop offset="100%" stop-color="#515bd4"/></linearGradient></defs><path d="M224 144c-44.2 0-80 35.8-80 80s35.8 80 80 80 80-35.8 80-80-35.8-80-80-80zm0 128c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm88-80c0 8.8-7.2 16-16 16s-16-7.2-16-16 7.2-16 16-16 16 7.2 16 16zm76 16c-1.7-35.3-9.9-66.7-36.2-92.9C370.7 73.9 339.3 65.7 304 64c-35.3-1.7-141.3-1.7-176.6 0C77.3 65.7 46 73.9 19.8 100.1 9.9 110 3.7 123.2 1.1 137.6c-1.7 35.3-1.7 141.3 0 176.6 1.7 35.3 9.9 66.7 36.2 92.9 26.2 26.2 57.6 34.4 92.9 36.2 35.3 1.7 141.3 1.7 176.6 0 35.3-1.7 66.7-9.9 92.9-36.2 26.2-26.2 34.4-57.6 36.2-92.9 1.7-35.3 1.7-141.3 0-176.6zM398.8 388c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.3 9s-102.9 2.6-132.3-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.3s-2.6-102.9 9-132.3c7.8-19.6 22.9-34.7 42.5-42.5 29.4-11.7 99.2-9 132.3-9s102.9-2.6 132.3 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.3s2.6 102.9-9 132.3z" fill="#fff"/></svg>
-                  </span>
+                <SocialIcon url="https://www.instagram.com/myauvra/" style={{ height: 32, width: 32, marginRight: 8 }} target="_blank" rel="noopener noreferrer" />
+                <a href="https://www.instagram.com/myauvra/" target="_blank" rel="noopener noreferrer" className={styles.iconLink} style={{verticalAlign: 'middle'}}>
                   Follow us on Instagram
                 </a>
               </div>
-              {/* LinkedIn third, official logo */}
+              {/* LinkedIn third, use react-social-icons */}
               <div className={styles.linkItem}>
-                <a href="https://www.linkedin.com/company/hormone-insight/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
-                  <span className={styles.icon} style={{verticalAlign: 'middle', marginRight: 8}}>
-                    {/* Official LinkedIn SVG */}
-                    <svg width="20" height="20" viewBox="0 0 448 512" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="448" height="512" rx="100" fill="#0077B5"/><path d="M100.28 448H7.4V148.9h92.88zm-46.44-340.7C24.12 107.3 0 83.2 0 53.6A53.6 53.6 0 0 1 53.6 0c29.6 0 53.6 24.12 53.6 53.6 0 29.6-24.12 53.6-53.6 53.6zM447.8 448h-92.4V302.4c0-34.7-12.4-58.4-43.3-58.4-23.6 0-37.6 15.9-43.8 31.3-2.3 5.6-2.8 13.4-2.8 21.2V448h-92.4s1.2-242.1 0-267.1h92.4v37.9c12.3-19 34.3-46.1 83.5-46.1 60.9 0 106.6 39.8 106.6 125.4V448z" fill="#fff"/></svg>
-                  </span>
+                <SocialIcon url="https://www.linkedin.com/company/hormone-insight/" style={{ height: 32, width: 32, marginRight: 8 }} target="_blank" rel="noopener noreferrer" />
+                <a href="https://www.linkedin.com/company/hormone-insight/" target="_blank" rel="noopener noreferrer" className={styles.iconLink} style={{verticalAlign: 'middle'}}>
                   Connect with us on LinkedIn
                 </a>
               </div>

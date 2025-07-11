@@ -322,53 +322,6 @@ const Results: React.FC = () => {
             </div>
           )}
 
-          {/* Detailed Explanations */}
-          <div className={styles.explanationsSection}>
-            <h2 className={styles.resultTitle}>Analysis Details</h2>
-            
-            {/* Symptom-Based Explanations */}
-            {categorizedExplanations.symptoms.length > 0 && (
-              <div className={styles.explanationCategory}>
-                <h3 className={styles.explanationTitle}>📋 Symptom Analysis</h3>
-                <ul className={styles.explanationList}>
-                  {categorizedExplanations.symptoms.map((explanation: string, index: number) => (
-                    <li key={index} className={styles.explanationItem}>
-                      {explanation}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Lab-Based Explanations */}
-            {categorizedExplanations.labs.length > 0 && (
-              <div className={styles.explanationCategory}>
-                <h3 className={styles.explanationTitle}>🧪 Lab Results Analysis</h3>
-                <ul className={styles.explanationList}>
-                  {categorizedExplanations.labs.map((explanation: string, index: number) => (
-                    <li key={index} className={styles.explanationItem}>
-                      {explanation}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* General Explanations */}
-            {categorizedExplanations.general.length > 0 && (
-              <div className={styles.explanationCategory}>
-                <h3 className={styles.explanationTitle}>ℹ️ Additional Information</h3>
-                <ul className={styles.explanationList}>
-                  {categorizedExplanations.general.map((explanation: string, index: number) => (
-                    <li key={index} className={styles.explanationItem}>
-                      {explanation}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-
           {/* Join Us on the Journey (in main container) */}
           <div className={styles.recommendations}>
             <h2 className={styles.resultTitle}>Join Us on the Journey</h2>
@@ -376,15 +329,7 @@ const Results: React.FC = () => {
               We're building something meaningful for your hormone health. Stay connected, explore our content, and be among the first to experience it.
             </p>
             <div className={styles.linkList}>
-              <div className={styles.linkItem}>
-                <a href="https://www.instagram.com/myauvra/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
-                  <span className={styles.icon} style={{verticalAlign: 'middle', marginRight: 8}}>
-                    {/* Instagram SVG */}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" fill="#E1306C"/><path d="M12 7.2A4.8 4.8 0 1 0 12 16.8A4.8 4.8 0 1 0 12 7.2Z" fill="white"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
-                  </span>
-                  Follow us on Instagram
-                </a>
-              </div>
+              {/* Waitlist first */}
               <div className={styles.linkItem}>
                 <a href="https://forms.fillout.com/t/x8xyYYpek3us" target="_blank" rel="noopener noreferrer" className={styles.textLink}>
                   <span className={styles.icon} style={{verticalAlign: 'middle', marginRight: 8}}>
@@ -394,11 +339,22 @@ const Results: React.FC = () => {
                   Join our Waitlist – Be the First to Know!
                 </a>
               </div>
+              {/* Instagram second, official logo */}
+              <div className={styles.linkItem}>
+                <a href="https://www.instagram.com/myauvra/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
+                  <span className={styles.icon} style={{verticalAlign: 'middle', marginRight: 8}}>
+                    {/* Official Instagram SVG */}
+                    <svg width="20" height="20" viewBox="0 0 448 512" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="448" height="512" rx="100" fill="url(#ig-gradient)"/><defs><linearGradient id="ig-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f58529"/><stop offset="50%" stop-color="#dd2a7b"/><stop offset="100%" stop-color="#515bd4"/></linearGradient></defs><path d="M224 144c-44.2 0-80 35.8-80 80s35.8 80 80 80 80-35.8 80-80-35.8-80-80-80zm0 128c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm88-80c0 8.8-7.2 16-16 16s-16-7.2-16-16 7.2-16 16-16 16 7.2 16 16zm76 16c-1.7-35.3-9.9-66.7-36.2-92.9C370.7 73.9 339.3 65.7 304 64c-35.3-1.7-141.3-1.7-176.6 0C77.3 65.7 46 73.9 19.8 100.1 9.9 110 3.7 123.2 1.1 137.6c-1.7 35.3-1.7 141.3 0 176.6 1.7 35.3 9.9 66.7 36.2 92.9 26.2 26.2 57.6 34.4 92.9 36.2 35.3 1.7 141.3 1.7 176.6 0 35.3-1.7 66.7-9.9 92.9-36.2 26.2-26.2 34.4-57.6 36.2-92.9 1.7-35.3 1.7-141.3 0-176.6zM398.8 388c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.3 9s-102.9 2.6-132.3-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.3s-2.6-102.9 9-132.3c7.8-19.6 22.9-34.7 42.5-42.5 29.4-11.7 99.2-9 132.3-9s102.9-2.6 132.3 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.3s2.6 102.9-9 132.3z" fill="#fff"/></svg>
+                  </span>
+                  Follow us on Instagram
+                </a>
+              </div>
+              {/* LinkedIn third, official logo */}
               <div className={styles.linkItem}>
                 <a href="https://www.linkedin.com/company/hormone-insight/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>
                   <span className={styles.icon} style={{verticalAlign: 'middle', marginRight: 8}}>
-                    {/* LinkedIn SVG */}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" fill="#0077B5"/><path d="M7.5 17V10.5H10V17H7.5ZM8.75 9.5C8.05964 9.5 7.5 8.94036 7.5 8.25C7.5 7.55964 8.05964 7 8.75 7C9.44036 7 10 7.55964 10 8.25C10 8.94036 9.44036 9.5 8.75 9.5ZM11 17V13.5C11 12.6716 11.6716 12 12.5 12C13.3284 12 14 12.6716 14 13.5V17H11ZM12.5 11C11.1193 11 10 12.1193 10 13.5V17H15V13.5C15 12.1193 13.8807 11 12.5 11Z" fill="white"/></svg>
+                    {/* Official LinkedIn SVG */}
+                    <svg width="20" height="20" viewBox="0 0 448 512" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="448" height="512" rx="100" fill="#0077B5"/><path d="M100.28 448H7.4V148.9h92.88zm-46.44-340.7C24.12 107.3 0 83.2 0 53.6A53.6 53.6 0 0 1 53.6 0c29.6 0 53.6 24.12 53.6 53.6 0 29.6-24.12 53.6-53.6 53.6zM447.8 448h-92.4V302.4c0-34.7-12.4-58.4-43.3-58.4-23.6 0-37.6 15.9-43.8 31.3-2.3 5.6-2.8 13.4-2.8 21.2V448h-92.4s1.2-242.1 0-267.1h92.4v37.9c12.3-19 34.3-46.1 83.5-46.1 60.9 0 106.6 39.8 106.6 125.4V448z" fill="#fff"/></svg>
                   </span>
                   Connect with us on LinkedIn
                 </a>

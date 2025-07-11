@@ -322,6 +322,50 @@ const Results: React.FC = () => {
             </div>
           )}
 
+          {/* Analysis Details (restored) */}
+          <div className={styles.explanationsSection}>
+            <h2 className={styles.resultTitle}>Analysis Details</h2>
+            {/* Symptom-Based Explanations */}
+            {categorizedExplanations.symptoms.length > 0 && (
+              <div className={styles.explanationCategory}>
+                <h3 className={styles.explanationTitle}>📋 Symptom Analysis</h3>
+                <ul className={styles.explanationList}>
+                  {categorizedExplanations.symptoms.map((explanation: string, index: number) => (
+                    <li key={index} className={styles.explanationItem}>
+                      {explanation}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {/* Lab-Based Explanations */}
+            {categorizedExplanations.labs.length > 0 && (
+              <div className={styles.explanationCategory}>
+                <h3 className={styles.explanationTitle}>🧪 Lab Results Analysis</h3>
+                <ul className={styles.explanationList}>
+                  {categorizedExplanations.labs.map((explanation: string, index: number) => (
+                    <li key={index} className={styles.explanationItem}>
+                      {explanation}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {/* General Explanations */}
+            {categorizedExplanations.general.length > 0 && (
+              <div className={styles.explanationCategory}>
+                <h3 className={styles.explanationTitle}>ℹ️ Additional Information</h3>
+                <ul className={styles.explanationList}>
+                  {categorizedExplanations.general.map((explanation: string, index: number) => (
+                    <li key={index} className={styles.explanationItem}>
+                      {explanation}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
           {/* Join Us on the Journey (in main container) */}
           <div className={styles.recommendations}>
             <h2 className={styles.resultTitle}>Join Us on the Journey</h2>

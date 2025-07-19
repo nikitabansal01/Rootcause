@@ -6,14 +6,15 @@
 import { SurveyResponses, LabValues } from '../../types';
 import { HormoneScores } from '../../types/HormoneScores';
 import { AnalysisResult } from '../../types/ResultsSummary';
+import { calculateCyclePhase, CyclePhaseResult, adjustSymptomScoreForPhase } from './cycleUtils';
 
 /**
  * Score symptoms to determine hormone imbalances
  * @param userResponses - User survey responses
- * @param cyclePhase - Current cycle phase
+ * @param cyclePhaseResult - Detailed cycle phase information
  * @returns Analysis results with imbalances and confidence
  */
-export function scoreSymptoms(userResponses: SurveyResponses, cyclePhase: string): AnalysisResult {
+export function scoreSymptoms(userResponses: SurveyResponses, cyclePhaseResult: CyclePhaseResult): AnalysisResult {
   const scores: HormoneScores = {
     androgens: 0,
     progesterone: 0,
@@ -64,17 +65,19 @@ export function scoreSymptoms(userResponses: SurveyResponses, cyclePhase: string
   }
   
   if (symptoms.includes('Bloating')) {
-    // Only count bloating if not in luteal phase (normal PMS symptom)
-    if (cyclePhase !== 'luteal') {
-      scores.estrogen += 2;
-      explanations.push('Bloating outside of PMS can indicate estrogen dominance');
+    // Adjust score based on cycle phase and confidence
+    const adjustedScore = adjustSymptomScoreForPhase('bloating', cyclePhaseResult.phase, cyclePhaseResult.phaseConfidence, 2);
+    scores.estrogen += adjustedScore;
+    if (adjustedScore > 0) {
+      explanations.push('Bloating outside of normal cycle timing can indicate estrogen dominance');
     }
   }
   
   if (symptoms.includes('Breast tenderness')) {
-    if (cyclePhase !== 'luteal') {
-      scores.estrogen += 2;
-      explanations.push('Breast tenderness outside of PMS can indicate estrogen dominance');
+    const adjustedScore = adjustSymptomScoreForPhase('breast tenderness', cyclePhaseResult.phase, cyclePhaseResult.phaseConfidence, 2);
+    scores.estrogen += adjustedScore;
+    if (adjustedScore > 0) {
+      explanations.push('Breast tenderness outside of normal cycle timing can indicate estrogen dominance');
     }
   }
 
@@ -177,10 +180,10 @@ export function scoreSymptoms(userResponses: SurveyResponses, cyclePhase: string
     confidenceLevel = 'medium';
   }
 
-  // Reduce confidence if cycle phase is unknown
-  if (cyclePhase === 'unknown') {
+  // Reduce confidence if cycle phase is unknown or low confidence
+  if (cyclePhaseResult.phase === 'unknown' || cyclePhaseResult.phaseConfidence === 'LOW') {
     confidenceLevel = confidenceLevel === 'high' ? 'medium' : 'low';
-    explanations.push('Cycle phase unknown - some symptoms may be normal for your cycle phase');
+    explanations.push('Cycle phase uncertain - some symptoms may be normal for your cycle phase');
   }
 
   // Add lab data analysis if available
@@ -246,7 +249,7 @@ export function scoreSymptoms(userResponses: SurveyResponses, cyclePhase: string
     explanations,
     scores,
     totalScore,
-    cyclePhase
+    cyclePhase: cyclePhaseResult.phase
   };
 }
 

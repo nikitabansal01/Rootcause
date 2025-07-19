@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { scoreSymptoms } from '../logic/hormones/scoring';
-import { getCyclePhase } from '../logic/hormones/cycleUtils';
+import { calculateCyclePhase } from '../logic/hormones/cycleUtils';
 import { SurveyResponses, Question } from '../types';
 import QuestionBlock from '../components/QuestionBlock';
 import RadioGroup from '../components/RadioGroup';
@@ -165,13 +165,13 @@ const Survey: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    // Calculate cycle phase
+    // Calculate cycle phase with enhanced logic
     const isRegular = answers.q1_period === 'Yes';
-    const cycleLength = answers.q1_cycle_length ? parseInt(answers.q1_cycle_length) : 28;
-    const cyclePhase = getCyclePhase(answers.q2_last_period, isRegular, cycleLength);
+    const cycleLength = answers.q1_cycle_length ? parseInt(answers.q1_cycle_length) : undefined;
+    const cyclePhaseResult = calculateCyclePhase(answers.q2_last_period, cycleLength, true);
     
     // Score symptoms and get analysis
-    const analysis = scoreSymptoms(answers, cyclePhase);
+    const analysis = scoreSymptoms(answers, cyclePhaseResult);
 
     // Prepare lab values for adjustment
     const labs = answers.q11_labs || {};
@@ -214,9 +214,12 @@ const Survey: React.FC = () => {
       if (exp.toLowerCase().includes('cortisol')) explanationsByHormone['cortisol'] = exp;
     });
 
-    // Build result object
+    // Build result object with enhanced cycle phase information
     const result = {
-      cyclePhase,
+      cyclePhase: cyclePhaseResult.phase,
+      cycleDay: cyclePhaseResult.cycleDay,
+      phaseConfidence: cyclePhaseResult.phaseConfidence,
+      useEstimatedCycle: cyclePhaseResult.useEstimatedCycle,
       confidence: analysis.confidenceLevel,
       primaryImbalance: analysis.primaryImbalance,
       secondaryImbalances: analysis.secondaryImbalances,
